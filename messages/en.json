@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "Legal Access Made Easier",
+    "subtitle": "Indonesia's trusted digital legal platform. Search regulations, read legal news, and consult with our Legal AI.",
+    "searchPlaceholder": "Search for regulations, laws, or legal articles...",
+    "searchButton": "Search Now",
+    "quickLinks": {
+      "laws": "Regulations",
+      "news": "News",
+      "ask": "Ask AI",
+      "premium": "Premium"
+    }
+  },
+  "site": {
+    "name": "HukumAI",
+    "description": "Indonesia's digital legal platform helping society understand regulations and legal news easily.",
+    "disclaimer": "Content on this platform is for informational purposes only and is not professional legal advice."
+  },
+  "nav": {
+    "home": "Home",
+    "berita": "News",
+    "regulasi": "Regulations",
+    "tanyaAi": "Ask AI",
+    "tentang": "About",
+    "login": "Login",
+    "register": "Register",
+    "profil": "Profile",
+    "bookmark": "Saved",
+    "langganan": "Subscription",
+    "pengaturan": "Settings",
+    "logout": "Logout"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contact": "Contact",
+    "rightsReserved": "All rights reserved."
+  }
+}

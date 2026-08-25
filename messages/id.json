@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "Akses Hukum Kini Lebih Mudah",
+    "subtitle": "Platform hukum digital terpercaya untuk masyarakat Indonesia. Cari regulasi, baca berita hukum, dan konsultasi dengan AI Hukum kami.",
+    "searchPlaceholder": "Cari peraturan, UU, atau artikel hukum...",
+    "searchButton": "Cari Sekarang",
+    "quickLinks": {
+      "laws": "Regulasi",
+      "news": "Berita",
+      "ask": "Tanya AI",
+      "premium": "Premium"
+    }
+  },
+  "site": {
+    "name": "HukumAI",
+    "description": "Platform hukum digital Indonesia yang membantu masyarakat memahami regulasi dan berita hukum dengan mudah.",
+    "disclaimer": "Konten di platform ini hanya untuk informational purposes dan bukan nasihat hukum profesional."
+  },
+  "nav": {
+    "home": "Beranda",
+    "berita": "Berita",
+    "regulasi": "Regulasi",
+    "tanyaAi": "Tanya AI",
+    "tentang": "Tentang",
+    "login": "Masuk",
+    "register": "Daftar",
+    "profil": "Profil",
+    "bookmark": "Tersimpan",
+    "langganan": "Langganan",
+    "pengaturan": "Pengaturan",
+    "logout": "Keluar"
+  },
+  "footer": {
+    "quickLinks": "Tautan Cepat",
+    "legal": "Legal",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Syarat & Ketentuan",
+    "contact": "Kontak",
+    "rightsReserved": "Hak cipta dilindungi."
+  }
+}
