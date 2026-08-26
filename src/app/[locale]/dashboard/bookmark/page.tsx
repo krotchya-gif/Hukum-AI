@@ -17,10 +17,11 @@ import {
 import { DeleteBookmarkButton } from '@/components/regulasi/DeleteBookmarkButton'
 
 export default async function BookmarkPage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 

@@ -8,10 +8,11 @@ import { Plus, Edit, FileText, CheckCircle2 } from 'lucide-react'
 import { AdminDeleteButton, GenerateSummaryButton } from '@/components/admin/AdminActions'
 
 export default async function AdminRegulasiPage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 

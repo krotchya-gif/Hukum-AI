@@ -44,8 +44,11 @@ export default function TanyaAIPage({
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [quotaReached, setQuotaReached] = useState(false);
-  // '' = belum terinisialisasi di client (hindari mismatch SSR)
-  const [sessionId, setSessionId] = useState("");
+  // Lazy init: '' saat SSR, id nyata di client — tidak ada mismatch karena
+  // sessionId tidak pernah dirender ke DOM.
+  const [sessionId, setSessionId] = useState(() =>
+    typeof window === "undefined" ? "" : getOrCreateSessionId()
+  );
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const suggestions = isID
@@ -62,11 +65,10 @@ export default function TanyaAIPage({
         "Copyright registration procedure for a logo",
       ];
 
-  // Ambil/buat sessionId, lalu muat riwayat sesi berjalan dari server.
+  // Muat riwayat sesi berjalan dari server.
   useEffect(() => {
-    const id = getOrCreateSessionId();
-    setSessionId(id);
-    fetch(`/api/ai/chat?sessionId=${encodeURIComponent(id)}`)
+    if (!sessionId) return;
+    fetch(`/api/ai/chat?sessionId=${encodeURIComponent(sessionId)}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (Array.isArray(data?.data) && data.data.length > 0) {
@@ -79,7 +81,7 @@ export default function TanyaAIPage({
         }
       })
       .catch(() => {});
-  }, []);
+  }, [sessionId]);
 
   // Gulir ke pesan terbaru
   useEffect(() => {

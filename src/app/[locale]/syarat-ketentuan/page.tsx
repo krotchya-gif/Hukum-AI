@@ -5,11 +5,12 @@ export const metadata: Metadata = {
   description: "Ketentuan penggunaan platform HukumAI.",
 };
 
-export default function TermsPage({
-  params: { locale },
+export default async function TermsPage({
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const isID = locale === "id";
 
   return (

@@ -3,10 +3,11 @@ import { ArrowLeft } from 'lucide-react'
 import { RegulasiForm } from '@/components/admin/RegulasiForm'
 
 export default async function NewRegulationPage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const isID = locale === 'id'
 
   return (

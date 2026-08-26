@@ -8,15 +8,17 @@ import { Calendar, User, Clock, ChevronRight, ChevronLeft, Newspaper, Crown } fr
 const PAGE_SIZE = 12;
 
 interface NewsPageProps {
-  params: { locale: string };
-  searchParams?: { page?: string };
+  params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ page?: string }>;
 }
 
-export default async function NewsPage({ params: { locale }, searchParams }: NewsPageProps) {
+export default async function NewsPage({ params, searchParams }: NewsPageProps) {
+  const { locale } = await params;
+  const sp = await searchParams;
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 
-  const page = Math.max(1, parseInt(searchParams?.page ?? '1', 10) || 1);
+  const page = Math.max(1, parseInt(sp?.page ?? '1', 10) || 1);
   const from = (page - 1) * PAGE_SIZE;
 
   // Fetch articles and categories (dengan total untuk paginasi)

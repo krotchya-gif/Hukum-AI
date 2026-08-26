@@ -17,10 +17,11 @@ import { AISummaryCard } from "@/components/regulasi/AISummaryCard";
 import { BookmarkButton } from "@/components/regulasi/BookmarkButton";
 
 export default async function RegulationDetailPage({
-  params: { locale, slug }
+  params
 }: {
-  params: { locale: string, slug: string }
+  params: Promise<{ locale: string, slug: string }>
 }) {
+  const { locale, slug } = await params;
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 

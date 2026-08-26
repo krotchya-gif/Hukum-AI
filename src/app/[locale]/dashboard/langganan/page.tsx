@@ -7,10 +7,11 @@ import { Crown, Zap, Calendar, Check } from 'lucide-react'
 import { CheckoutButton } from '@/components/langganan/CheckoutButton'
 
 export default async function SubscriptionPage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 

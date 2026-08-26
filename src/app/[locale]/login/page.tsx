@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/navigation";
@@ -22,6 +22,7 @@ export default function LoginPage({
 
 function LoginForm({ locale }: { locale: string }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const justRegistered = searchParams.get("registered") === "true";
   const isID = locale === "id";
   const [email, setEmail] = useState("");
@@ -45,7 +46,8 @@ function LoginForm({ locale }: { locale: string }) {
 
       if (res.ok) {
         // Redirect to dashboard after successful login
-        window.location.href = `/${locale}/dashboard/profil`;
+        router.push(`/${locale}/dashboard/profil`);
+        router.refresh();
       } else {
         setError(data.error || (isID ? "Login gagal" : "Login failed"));
       }

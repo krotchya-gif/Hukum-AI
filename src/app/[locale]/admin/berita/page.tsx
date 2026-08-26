@@ -8,10 +8,11 @@ import { Plus, Edit, Image as ImageIcon } from 'lucide-react'
 import { AdminDeleteButton } from '@/components/admin/AdminActions'
 
 export default async function AdminBeritaPage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 

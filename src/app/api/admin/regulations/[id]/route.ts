@@ -24,7 +24,8 @@ function pickFields(body: Record<string, unknown>) {
   return data
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await requireAdmin()
   if (!supabase) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
@@ -41,7 +42,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     const { error } = await supabase
       .from('regulations')
       .update(data)
-      .eq('id', params.id)
+      .eq('id', id)
 
     if (error) {
       console.error('[Admin Regulation Update]', error.message)
@@ -55,13 +56,14 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   }
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await requireAdmin()
   if (!supabase) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const { error } = await supabase.from('regulations').delete().eq('id', params.id)
+  const { error } = await supabase.from('regulations').delete().eq('id', id)
 
   if (error) {
     console.error('[Admin Regulation Delete]', error.message)

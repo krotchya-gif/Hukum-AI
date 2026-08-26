@@ -7,11 +7,12 @@ import { LayoutDashboard, Newspaper, Gavel, Settings, LogOut } from 'lucide-reac
 
 export default async function AdminLayout({
   children,
-  params: { locale }
+  params
 }: {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
   const { data: { user } } = await supabase.auth.getUser()

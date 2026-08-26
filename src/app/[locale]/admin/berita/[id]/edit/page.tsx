@@ -6,10 +6,11 @@ import { ArrowLeft } from 'lucide-react'
 import { ArticleForm, type ArticleFormValues } from '@/components/admin/ArticleForm'
 
 export default async function EditArticlePage({
-  params: { locale, id }
+  params
 }: {
-  params: { locale: string, id: string }
+  params: Promise<{ locale: string, id: string }>
 }) {
+  const { locale, id } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 

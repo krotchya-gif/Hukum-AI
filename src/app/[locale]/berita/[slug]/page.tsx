@@ -14,10 +14,11 @@ import { Badge } from "@/components/ui/badge";
 import { ArticleActions, DisabledBookmarkHint } from "@/components/articles/ArticleActions";
 
 export default async function ArticleDetailPage({
-  params: { locale, slug }
+  params
 }: {
-  params: { locale: string, slug: string }
+  params: Promise<{ locale: string, slug: string }>
 }) {
+  const { locale, slug } = await params;
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 

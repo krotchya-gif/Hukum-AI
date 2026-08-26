@@ -25,20 +25,22 @@ const TYPES = [
 ] as const;
 
 interface RegulationsPageProps {
-  params: { locale: string };
-  searchParams?: { q?: string; type?: string; page?: string };
+  params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ q?: string; type?: string; page?: string }>;
 }
 
-export default async function RegulationsPage({ params: { locale }, searchParams }: RegulationsPageProps) {
+export default async function RegulationsPage({ params, searchParams }: RegulationsPageProps) {
+  const { locale } = await params;
+  const sp = await searchParams;
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 
   const isID = locale === 'id';
-  const q = searchParams?.q?.trim() ?? '';
-  const selectedType = TYPES.some((t) => t.value === searchParams?.type)
-    ? searchParams!.type!
+  const q = sp?.q?.trim() ?? '';
+  const selectedType = TYPES.some((t) => t.value === sp?.type)
+    ? sp!.type!
     : null;
-  const page = Math.max(1, parseInt(searchParams?.page ?? '1', 10) || 1);
+  const page = Math.max(1, parseInt(sp?.page ?? '1', 10) || 1);
   const from = (page - 1) * PAGE_SIZE;
 
   let query = supabase

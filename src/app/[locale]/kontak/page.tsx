@@ -8,11 +8,12 @@ export const metadata: Metadata = {
   description: "Hubungi tim HukumAI untuk pertanyaan, saran, atau kerja sama.",
 };
 
-export default function KontakPage({
-  params: { locale },
+export default async function KontakPage({
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const isID = locale === "id";
 
   return (

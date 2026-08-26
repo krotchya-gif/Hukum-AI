@@ -13,10 +13,11 @@ import { Crown, Calendar, Clock, BookOpen } from 'lucide-react'
 import { ProfileForm } from '@/components/dashboard/ProfileForm'
 
 export default async function ProfilePage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 

@@ -5,11 +5,12 @@ export const metadata: Metadata = {
   description: "Bagaimana HukumAI mengumpulkan, menggunakan, dan melindungi data pribadi Anda.",
 };
 
-export default function PrivacyPolicyPage({
-  params: { locale },
+export default async function PrivacyPolicyPage({
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const isID = locale === "id";
 
   return (

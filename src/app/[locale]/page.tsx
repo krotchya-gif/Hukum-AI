@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,10 +8,11 @@ import { Search, Gavel, Newspaper, MessageSquare, ShieldCheck, Download, Users }
 import Link from "next/link";
 
 interface HomePageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default function HomePage({ params: { locale } }: HomePageProps) {
+export default function HomePage({ params }: HomePageProps) {
+  const { locale } = use(params);
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const isID = locale === "id";

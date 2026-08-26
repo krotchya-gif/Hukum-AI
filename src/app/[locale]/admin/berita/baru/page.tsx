@@ -5,10 +5,11 @@ import { ArrowLeft } from 'lucide-react'
 import { ArticleForm } from '@/components/admin/ArticleForm'
 
 export default async function NewArticlePage({
-  params: { locale }
+  params
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params;
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
 
